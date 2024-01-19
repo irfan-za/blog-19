@@ -8,7 +8,7 @@ export default async function PostDetail({params}) {
   const user= await res_user.json()
   console.log(user);
   return (
-    <div className="text-gray-700 mx-auto max-w-3xl px-3 sm:px-0 mt-24 sm:mt-32">
+    <main className="text-gray-700 mx-auto max-w-3xl px-3 sm:px-0 mt-24 sm:mt-32">
       <h1 className="text-gray-800 font-semibold text-2xl sm:text-3xl text-center">{post.title}</h1>
       <p className="text-center mt-2 mb-8 sm:mb-10">~ {user.name} ~</p>
       <p className="text-lg">{post.body}</p>
@@ -27,6 +27,6 @@ export default async function PostDetail({params}) {
           ))
         }
       </div>
-    </div>
+    </main>
   )
 }

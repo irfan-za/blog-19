@@ -6,7 +6,7 @@ export default async function Home() {
   return (
     <main className="mx-auto max-w-3xl px-2 mt-20">
       {
-        posts.map(post => <Card key={post.id} data={post}/>)
+        posts && posts.map(post => <Card key={post.id} data={post}/>)
       }
     </main>
   )
