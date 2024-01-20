@@ -46,12 +46,12 @@ export default async function UserDetail({params}) {
       <main className="mx-auto max-w-3xl px-2 mt-24 sm:mt-36 text-center">
         <h1 className="font-medium text-gray-800 text-3xl mb-6">User Not Found</h1>
         <p>The user with id <span className="font-medium">{params.id}</span> doesn&apos;t exist in our API data.</p>
-        <p>Please back to home page</p>
+        <p>Please back to users page</p>
         <Link
-          href="/"
+          href="/users"
           className="inline-block px-5 pt-2 pb-3 mt-6 text-sm font-medium text-white bg-sky-500 rounded-full hover:bg-sky-600 focus:outline-none focus:ring"
         >
-          Back home
+          Back to users
         </Link>
       </main>
     )

@@ -3,14 +3,27 @@ import Image from 'next/image'
 import Link from 'next/link'
 import ScrollDetector from '../utils/scrollDetector'
 import DarkModeToggle from './DarkModeToggle'
+import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
+const navlinks = [
+  { name: 'Posts', href: '/' },
+  { name: 'Users', href: '/users' },
+]
+
 export default function Navbar() {
   const scroll= ScrollDetector()
+  const pathname = usePathname();
+  const [activePath, setActivePath] = useState('/');
+
+  useEffect(() => {
+    setActivePath(pathname);
+  }, [pathname]);
 
   return (
     <nav className={classNames(
@@ -28,15 +41,20 @@ export default function Navbar() {
               className='w-auto'
             /></Link>
         </div>
-        <h1 className='hidden sm:block text-3xl font-bold text-gray-700'>Blog</h1>
         <div className='flex items-center space-x-3'>
-          <Link
-            href='/users'
-            className='bg-sky-500 hover:bg-sky-600 text-white bg-opacity-100 px-3 text-base font-medium rounded-full pb-1'
-            aria-current='page'
-          >
-            users
-          </Link>
+          {navlinks.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className={classNames(
+                activePath === item.href ? 'bg-sky-500 text-white bg-opacity-100' : 'bg-opacity-0 text-sky-600 hover:bg-sky-500 hover:text-white  transition duration-300 ease-in-out',
+                'py-1 px-3 text-base font-medium  rounded-full'
+              )}
+              aria-current={activePath === item.href ? 'page' : undefined}
+            >
+              {item.name}
+            </Link>
+          ))}
           <DarkModeToggle/>
         </div>
       </div>
