@@ -3,14 +3,32 @@ import Link from "next/link"
 import Badge from "./Badge"
 import FormModal from "./modal/FormModal"
 import DeleteModal from "./modal/DeleteModal"
-import { Fragment, useState } from "react"
+import { Fragment, useEffect, useState } from "react"
 import { Menu, Transition } from "@headlessui/react"
+import { usePathname, useSearchParams } from "next/navigation"
+import { useRouter } from "next/navigation"
 
 function TableData({users}) {
   const [open, setOpen] = useState(false)
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [title, setTitle] = useState("")
   const [data, setData] = useState([])
+  const [filteredData, setFilteredData] = useState([])
+  const searchParams = useSearchParams()
+  const pathName = usePathname()
+  const search= searchParams.get("search")
+  const router= useRouter()
+
+  useEffect(() => {
+    if(router && search){
+      return setFilteredData(users.filter((user)=>user.name.toLowerCase().includes(search.toLowerCase())))
+    }
+    setFilteredData(users)
+  }, [users, search, router])
+
+  const doSearch =async (e)=>{
+    router.replace(`${pathName}?search=${e.target.value}`)
+  }
 
   return (
     <div className="border border-gray-400 bg-white pt-5 rounded-lg">
@@ -19,7 +37,7 @@ function TableData({users}) {
         <div className="flex flex-row space-x-2 md:space-x-4 pr-4">
             <div className="relative flex items-center">
               <svg className="absolute top-[25%] right-2 h-4 w-4 text-gray-500 bg-gray-100" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-              <input type="text" id="icon" name="icon"  className="py-1 px-4 w-full md:w-48 bg-transparent border border-gray-700 shadow-sm rounded-lg text-sm text-gray-700 focus:outline-sky-500 focus:ring-gray-600 placeholder:text-gray-500" placeholder="Find user..."/>      
+              <input type="text" id="icon" name="search" onChange={(e)=>doSearch(e)} className="py-1 px-4 w-full md:w-48 bg-transparent border border-gray-700 shadow-sm rounded-lg text-sm text-gray-700 focus:outline-sky-500 focus:ring-gray-600 placeholder:text-gray-500" placeholder="Find user..."/>      
             </div>
             
             <button
@@ -43,7 +61,7 @@ function TableData({users}) {
       </thead>
       <tbody>
         {
-          users.map((user,i) => {
+          filteredData.map((user,i) => {
           return (
           <tr key={user.id} className="grid grid-cols-7 gap-3 p-2 border-t border-gray-400 mx-auto">
             <td className="ml-2">{i+1}</td>
