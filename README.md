@@ -91,6 +91,8 @@
 
 ### Hybrid Application (SSR & CSR)
 
+![Performance Image](https://ajicfyapwuyotrfthhvu.supabase.co/storage/v1/object/public/project/Screenshot%202024-01-20%20232618.png)
+
 1. **SSR (Server-Side Rendering):**
    - Implemented SSR on blog list, blog detail. and user detail page for improved performance.
 
