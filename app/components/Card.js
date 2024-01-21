@@ -6,7 +6,7 @@ async function Card({data}) {
   return (
     <div className='border-b border-gray-300 p-3 text-center text-gray-700'>
       <h1 className='font-medium text-xl sm:text-2xl text-gray-800 line-clamp-2 sm:line-clamp-1'>{data.title}</h1>
-      <p className="text-sm my-2">~ {user.name} ~</p>
+      <p className="text-sm my-2">{user.name && `~ ${user.name} ~`}</p>
       <p className=' line-clamp-3'>{data.body}</p>
       <Link href={`/posts/${data.id}`} className="inline-flex space-x-1 hover:underline text-sky-500 hover:text-sky-600 font-medium group my-1">
         <span>Read more </span>

@@ -2,7 +2,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import ScrollDetector from '../utils/scrollDetector'
-import DarkModeToggle from './DarkModeToggle'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
@@ -55,7 +54,6 @@ export default function Navbar() {
               {item.name}
             </Link>
           ))}
-          <DarkModeToggle/>
         </div>
       </div>
     </nav>

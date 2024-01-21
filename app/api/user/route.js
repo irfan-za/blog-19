@@ -8,7 +8,7 @@ export async function POST(req) {
     method: 'POST',
     headers: {
       "Authorization": "Bearer "+process.env.ACCESS_TOKEN,
-      'Content-Type': 'application/json',
+       'Content-Type': 'application/json',
     },
     body: JSON.stringify(formData),
   })

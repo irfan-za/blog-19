@@ -6,7 +6,6 @@ export default async function PostDetail({params}) {
   const comments= await res_comments.json()
   const res_user= await fetch(process.env.API_URL+'/users/'+post.user_id)
   const user= await res_user.json()
-  console.log(user);
   return (
     <main className="text-gray-700 mx-auto max-w-3xl px-3 sm:px-0 mt-24 sm:mt-32">
       <h1 className="text-gray-800 font-semibold text-2xl sm:text-3xl text-center">{post.title}</h1>
