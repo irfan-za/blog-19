@@ -10,7 +10,7 @@ const Pagination = (
   }
 ) => {
   return (
-    <div className='flex gap-2 mx-auto my-10 overflow-x-auto max-w-[90%] sm:max-w-fit'>
+    <div className='flex gap-2 mx-auto my-10 overflow-x-auto max-w-[90%] sm:max-w-fit justify-center'>
       <Link 
         scroll={false}
         href={`?page=1`}
